@@ -1,0 +1,46 @@
+#=========================== Filebeat inputs =============================
+filebeat.inputs:
+- type: log
+  enabled: false
+  paths:
+    - /var/log/*.log
+
+#============================= Filebeat modules ===============================
+filebeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: true
+  reload.period: 60s
+
+#-------------------------- Elasticsearch output ------------------------------
+output.elasticsearch:
+  hosts: ["es1.zenlab.local:9200","es2.zenlab.local:9200","es3.zenlab.local:9200"]
+  password: ${BEATS_WRITER_PW}
+  username: ${BEATS_WRITER_USERNAME}
+  protocol: https
+
+#================================ Processors =====================================
+processors:
+  - add_host_metadata: 
+      netinfo.enabled: true
+      cache.ttl: 5m
+      geo:
+        name: bj-dc-01
+        location: 35.5528, 116.2360
+        continent_name: Asia
+        country_iso_code: CN
+        region_name: Beijing
+        region_iso_code: CN-BJ
+        city_name: Beijing 
+  - add_cloud_metadata: ~
+  - add_docker_metadata: ~
+  - add_kubernetes_metadata: ~
+  - add_fields:
+      target: ''
+      fields:
+        service.name: 'Elastic Cloud'
+        service.id: 'ec-ww'
+
+#==================== Best Practice Configuration ==========================
+setup.ilm.check_exists: false
+logging.level: error
+queue.spool: ~
