@@ -1,0 +1,51 @@
+auditbeat.modules:
+
+- module: auditd
+  audit_rule_files: [ '${path.config}/audit.rules.d/*.conf' ]
+  audit_rules: |
+
+- module: file_integrity
+  paths:
+  - /bin
+  - /usr/bin
+  - /sbin
+  - /usr/sbin
+  - /etc
+
+- module: system
+  datasets:
+    - package # Installed, updated, and removed packages
+  period: 2m # The frequency at which the datasets check for changes
+
+- module: system
+  datasets:
+    - host    # General host information, e.g. uptime, IPs
+    - login   # User logins, logouts, and system boots.
+    - process # Started and stopped processes
+    - socket  # Opened and closed sockets
+    - user    # User information
+  user.detect_password_changes: true
+  login.wtmp_file_pattern: /var/log/wtmp*
+  login.btmp_file_pattern: /var/log/btmp*
+
+setup.template.settings:
+  index.number_of_shards: 1
+  index.codec: best_compression
+
+tags: ["service-test-lab", "vagrant-vm"]
+
+fields:
+  env: dev
+
+setup.kibana:
+  host: "192.168.50.10:5601"
+
+output.elasticsearch:
+  hosts: ["192.168.50.10:9200"]
+  username: "elastic"
+  password: "bzZUg5SzSJMANQoItd0U"
+
+processors:
+  - add_host_metadata: ~
+  - add_cloud_metadata: ~
+  - add_docker_metadata: ~

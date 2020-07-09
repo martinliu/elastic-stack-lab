@@ -28,6 +28,7 @@ echo "################### Update Beats configuration files ..."
 
 cp -f filebeat-v1.yml /etc/filebeat/filebeat.yml
 cp -f metricbeat-v1.yml /etc/metricbeat/metricbeat.yml
+cp -f auditbeat.yml /etc/auditbeat/auditbeat.yml
 
 echo "################### Setup Keystor for Beats ..."
 
@@ -39,6 +40,9 @@ echo $b_es  | sudo metricbeat keystore add INT_ES_SRV --stdin --force
 echo $b_user  | sudo metricbeat keystore add BEATS_WRITER_USERNAME --stdin --force
 echo $b_pwd   | sudo metricbeat keystore add BEATS_WRITER_PW --stdin --force
 
+echo $b_es  | sudo auditbeat keystore add INT_ES_SRV --stdin --force
+echo $b_user  | sudo auditbeat keystore add BEATS_WRITER_USERNAME --stdin --force
+echo $b_pwd   | sudo auditbeat keystore add BEATS_WRITER_PW --stdin --force
 
 echo "################### Start Beats services ..."
 
