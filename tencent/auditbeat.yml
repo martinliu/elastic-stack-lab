@@ -37,15 +37,35 @@ tags: ["service-test-lab", "vagrant-vm"]
 fields:
   env: dev
 
-setup.kibana:
-  host: "192.168.50.10:5601"
 
 output.elasticsearch:
-  hosts: ["192.168.50.10:9200"]
-  username: "elastic"
-  password: "bzZUg5SzSJMANQoItd0U"
+  hosts: ["${INT_ES_SRV}"]
+  password: ${BEATS_WRITER_PW}
+  username: ${BEATS_WRITER_USERNAME}
 
+#================================ Processors =====================================
 processors:
-  - add_host_metadata: ~
+  - add_host_metadata: 
+      netinfo.enabled: true
+      cache.ttl: 5m
+      geo:
+        name: bj-dc-01
+        location: 35.5528, 116.2360
+        continent_name: Asia
+        country_iso_code: CN
+        region_name: Beijing
+        region_iso_code: CN-BJ
+        city_name: Beijing 
   - add_cloud_metadata: ~
   - add_docker_metadata: ~
+  - add_kubernetes_metadata: ~
+  - add_fields:
+      target: ''
+      fields:
+        service.name: 'Joint Lab'
+        service.id: 'es-qq'
+
+#==================== Best Practice Configuration ==========================
+setup.ilm.check_exists: false
+logging.level: error
+queue.spool: ~
