@@ -34,3 +34,8 @@ processors:
       fields:
         service.name: 'Joint Lab'
         service.id: 'es-qq'
+
+#==================== Best Practice Configuration ==========================
+setup.ilm.check_exists: false
+logging.level: error
+queue.spool: ~
