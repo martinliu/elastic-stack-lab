@@ -4,7 +4,7 @@
 
 elastic_version='7.5.1'
 b_rpm='https://mirrors.cloud.tencent.com/elasticstack/7.x/yum'
-b_es='192.168.0.12:9200'
+b_es='192.168.0.43:9200'
 b_user='beats-writer'
 b_pwd='DevOpsMeetup'
 
@@ -48,3 +48,4 @@ echo "################### Start Beats services ..."
 
 sudo systemctl start  metricbeat.service
 sudo systemctl start  filebeat.service
+sudo systemctl start  auditbeat.service
