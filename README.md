@@ -2,6 +2,10 @@
 
 测试和总结在各种云环境中运行 Elastic Stack 的最佳实践。
 
+## Elastic Cloud 云
+
+Elastic Cloud 在 http://cloud.elastic.co 是 Elastic 公司提供的 SaaS 服务。
+
 ## Tencent 云
 
-*  [Beats 安装部署](tencent/lab1.md)
+* [Beats 安装部署](tencent/lab1.md)
