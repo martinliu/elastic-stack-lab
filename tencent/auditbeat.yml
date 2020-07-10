@@ -28,10 +28,6 @@ auditbeat.modules:
   login.wtmp_file_pattern: /var/log/wtmp*
   login.btmp_file_pattern: /var/log/btmp*
 
-setup.template.settings:
-  index.number_of_shards: 1
-  index.codec: best_compression
-
 output.elasticsearch:
   hosts: ["${INT_ES_SRV}"]
   password: ${BEATS_WRITER_PW}

@@ -85,3 +85,18 @@ sudo systemctl start  metricbeat.service
 sudo systemctl start  filebeat.service
 sudo systemctl start  auditbeat.service
 
+
+## 优化初始配置和数据
+
+在 Kibana 控制台里查看 Dashboard，查看第一个节点相关的数据。
+
+调整 ILM 策略。
+
+## 在其他的节点上部署 Beats
+
+参考和修改安装脚本，一键式安装和配置 Beats
+
+git clone https://github.com/martinliu/joint-lab.git
+cd tencent
+sh add-agent.sh
+
