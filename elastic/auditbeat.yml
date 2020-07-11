@@ -1,0 +1,52 @@
+auditbeat.modules:
+
+- module: auditd
+  audit_rule_files: [ '${path.config}/audit.rules.d/*.conf' ]
+  audit_rules: |
+
+- module: file_integrity
+  paths:
+  - /bin
+  - /usr/bin
+  - /sbin
+  - /usr/sbin
+  - /etc
+
+- module: system
+  datasets:
+    - package # Installed, updated, and removed packages
+  period: 10m # The frequency at which the datasets check for changes
+
+- module: system
+  datasets:
+    - host    # General host information, e.g. uptime, IPs
+    - login   # User logins, logouts, and system boots.
+    - process # Started and stopped processes
+    - socket  # Opened and closed sockets
+    - user    # User information
+  user.detect_password_changes: true
+  login.wtmp_file_pattern: /var/log/wtmp*
+  login.btmp_file_pattern: /var/log/btmp*
+
+#-------------------------- Elastic Cloud output ------------------------------
+cloud.id: "${BEATS_CLOUD_ID}"
+cloud.auth: "${BEATS_CLOUD_AUTH}"
+
+#================================ Processors =====================================
+processors:
+  - add_host_metadata: 
+      netinfo.enabled: true
+      cache.ttl: 5m
+  - add_cloud_metadata: ~
+  - add_docker_metadata: ~
+  - add_kubernetes_metadata: ~
+  - add_fields:
+      target: ''
+      fields:
+        service.name: 'Joint Lab'
+        service.id: 'es-qq'
+
+#==================== Best Practice Configuration ==========================
+setup.ilm.check_exists: false
+logging.level: error
+queue.spool: ~

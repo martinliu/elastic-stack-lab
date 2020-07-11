@@ -1,0 +1,28 @@
+# =========================== Modules configuration ============================
+metricbeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: true
+  reload.period: 100s
+
+#-------------------------- Elastic Cloud output ------------------------------
+cloud.id: "${BEATS_CLOUD_ID}"
+cloud.auth: "${BEATS_CLOUD_AUTH}"
+
+#================================ Processors =====================================
+processors:
+  - add_host_metadata: 
+      netinfo.enabled: true
+      cache.ttl: 5m
+  - add_cloud_metadata: ~
+  - add_docker_metadata: ~
+  - add_kubernetes_metadata: ~
+  - add_fields:
+      target: ''
+      fields:
+        service.name: 'Joint Lab'
+        service.id: 'es-qq'
+
+#==================== Best Practice Configuration ==========================
+setup.ilm.check_exists: false
+logging.level: error
+queue.spool: ~

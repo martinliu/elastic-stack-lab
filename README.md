@@ -4,7 +4,7 @@
 
 ## Elastic Cloud 云
 
-Elastic Cloud 在 http://cloud.elastic.co 是 Elastic 公司提供的 SaaS 服务。
+Elastic Cloud http://cloud.elastic.co 是 Elastic 公司提供的 SaaS 服务。
 
 ## Tencent 云
 
