@@ -10,14 +10,14 @@ b_auth='beats-writer:DevOpsMeetup'
 echo "############## Installing  Beats "$elastic_version" ..."
 
 
-yum install -y $b_rpm/$elastic_version/filebeat-$elastic_version-x86_64.rpm
+yum install -y filebeat-$elastic_version-x86_64.rpm
 systemctl enable  filebeat.service
 filebeat modules enable system
 
-yum install -y $b_rpm/$elastic_version/metricbeat-$elastic_version-x86_64.rpm
+yum install -y metricbeat-$elastic_version-x86_64.rpm
 systemctl enable  metricbeat.service
 
-yum install -y $b_rpm/$elastic_version/auditbeat-$elastic_version-x86_64.rpm
+yum install -y auditbeat-$elastic_version-x86_64.rpm
 systemctl enable  auditbeat.service
 
 
