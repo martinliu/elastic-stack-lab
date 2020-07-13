@@ -46,5 +46,5 @@ echo $b_pwd   | sudo auditbeat keystore add BEATS_WRITER_PW --stdin --force
 
 echo "################### Start Beats services ..."
 
-sudo systemctl start  metricbeat.service
-sudo systemctl start  filebeat.service
+sudo systemctl restart  metricbeat.service
+sudo systemctl restart  filebeat.service
