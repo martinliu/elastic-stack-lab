@@ -17,7 +17,7 @@
 
 安装脚本
 
-`
+```
 elastic_version='7.5.1'
 b_rpm='https://mirrors.cloud.tencent.com/elasticstack/7.x/yum'
 
@@ -32,11 +32,13 @@ systemctl enable  metricbeat.service
 
 yum install -y $b_rpm/$elastic_version/auditbeat-$elastic_version-x86_64.rpm
 systemctl enable  auditbeat.service
+```
 
 初始化 Beats 后台配置
 
 创建索引，导入 Kibana 可视化工具。
 
+```
 filebeat setup -e \
   -E output.logstash.enabled=false \
   -E output.elasticsearch.hosts=['192.168.0.43:9200'] \
@@ -56,9 +58,11 @@ auditbeat setup -e \
   -E output.elasticsearch.username=elastic \
   -E output.elasticsearch.password=JointLab@987 \
   -E setup.kibana.host=es-ot7wei87.internal.kibana.tencentelasticsearch.com:5601
-`
+```
+
 更新配置文件，启动 Beats 服务。
-`
+
+```
 echo "################### Update Beats configuration files ..."
 
 cp -f filebeat-v1.yml /etc/filebeat/filebeat.yml
@@ -84,7 +88,7 @@ echo "################### Start Beats services ..."
 sudo systemctl start  metricbeat.service
 sudo systemctl start  filebeat.service
 sudo systemctl start  auditbeat.service
-`
+```
 
 ## 优化初始配置和数据
 

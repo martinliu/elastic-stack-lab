@@ -8,4 +8,4 @@ Elastic Cloud http://cloud.elastic.co 是 Elastic 公司提供的 SaaS 服务。
 
 ## Tencent 云
 
-* [Beats 安装部署](tencent/lab1.md)
+* [Beats 最佳实践](tencent/lab1.md)
