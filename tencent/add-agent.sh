@@ -48,4 +48,3 @@ echo "################### Start Beats services ..."
 
 sudo systemctl start  metricbeat.service
 sudo systemctl start  filebeat.service
-sudo systemctl start  auditbeat.service
