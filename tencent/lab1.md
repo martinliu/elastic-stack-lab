@@ -17,7 +17,7 @@
 
 安装脚本
 
-
+`
 elastic_version='7.5.1'
 b_rpm='https://mirrors.cloud.tencent.com/elasticstack/7.x/yum'
 
@@ -56,9 +56,9 @@ auditbeat setup -e \
   -E output.elasticsearch.username=elastic \
   -E output.elasticsearch.password=JointLab@987 \
   -E setup.kibana.host=es-ot7wei87.internal.kibana.tencentelasticsearch.com:5601
-
+`
 更新配置文件，启动 Beats 服务。
-
+`
 echo "################### Update Beats configuration files ..."
 
 cp -f filebeat-v1.yml /etc/filebeat/filebeat.yml
@@ -84,7 +84,7 @@ echo "################### Start Beats services ..."
 sudo systemctl start  metricbeat.service
 sudo systemctl start  filebeat.service
 sudo systemctl start  auditbeat.service
-
+`
 
 ## 优化初始配置和数据
 
@@ -96,7 +96,9 @@ sudo systemctl start  auditbeat.service
 
 参考和修改安装脚本，一键式安装和配置 Beats
 
+```
 git clone https://github.com/martinliu/joint-lab.git
 cd tencent
 sh add-agent.sh
+```
 

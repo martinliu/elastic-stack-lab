@@ -60,6 +60,14 @@ heartbeat setup -e \
   -E cloud.auth="elastic:SpOqnJs5m1yE4pgfpzNXl6kP" \
   -E setup.kibana.host=https://c586fdd9e810483aa11ab58455fa84e5.asia-east1.gcp.elastic-cloud.com:9243
 
+
+
+packetbeat setup -e \
+  -E output.logstash.enabled=false \
+  -E cloud.id="For-Long-Demo:YXNpYS1lYXN0MS5nY3AuZWxhc3RpYy1jbG91ZC5jb20kMGE1MTA1MWZjOTEwNDcwMjhjYzIzMTQ5N2UxMjBjMTkkYzU4NmZkZDllODEwNDgzYWExMWFiNTg0NTVmYTg0ZTU=" \
+  -E cloud.auth="elastic:SpOqnJs5m1yE4pgfpzNXl6kP" \
+  -E setup.kibana.host=https://c586fdd9e810483aa11ab58455fa84e5.asia-east1.gcp.elastic-cloud.com:9243
+
 在 Kibana 的 Dashboard 中查看导入的各种对象。
 
 
@@ -107,3 +115,12 @@ git clone https://github.com/martinliu/joint-lab.git
 cd tencent
 sh add-agent.sh
 
+settings = {
+logfile = "/var/log/lsyncd/lsyncd.log",
+statusFile = "/var/log/lsyncd/lsyncd.status"
+}
+sync {
+default.rsync,
+source = "/home/zheng_liu/martinliu-hugo/public",
+target = "/usr/share/nginx/html",
+}
