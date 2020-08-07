@@ -10,7 +10,7 @@
 
 登录腾讯云服务控制台，查询并进入 Elasticsearc 服务，点击新建按钮，创建 Elasticsearch 集群。如下图所示。
 
-[](qcloud-es.jpeg)
+![](qcloud-es.jpeg)
 
 
 创建冷热分层的集群。
