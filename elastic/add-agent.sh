@@ -3,7 +3,7 @@
 # url: http://martinliu.cn
 
 elastic_version='7.8.0'
-b_rpm='https://mirrors.cloud.tencent.com/elasticstack/7.x/yum'
+b_rpm='https://artifacts.elastic.co/downloads/beats'
 b_id='For-Long-Demo:YXNpYS1lYXN0MS5nY3AuZWxhc3RpYy1jbG91ZC5jb20kMGE1MTA1MWZjOTEwNDcwMjhjYzIzMTQ5N2UxMjBjMTkkYzU4NmZkZDllODEwNDgzYWExMWFiNTg0NTVmYTg0ZTU='
 b_auth='beats-writer:DevOpsMeetup'
 
@@ -14,18 +14,17 @@ cloud.auth:  "${BEATS_CLOUD_AUTH}"
 echo "############## Installing  Beats "$elastic_version" ..."
 
 
-yum install -y $b_rpm/$elastic_version/filebeat-$elastic_version-x86_64.rpm
-yum install -y $b_rpm/$elastic_version/filebeat-$elastic_version-x86_64.rpm
+yum install -y $b_rpm/filebeat/filebeat-$elastic_version-x86_64.rpm
 systemctl enable  filebeat.service
 filebeat modules enable system
 
-yum install -y $b_rpm/$elastic_version/metricbeat-$elastic_version-x86_64.rpm
+yum install -y $b_rpm/metricbeat/metricbeat-$elastic_version-x86_64.rpm
 systemctl enable  metricbeat.service
 
-yum install -y $b_rpm/$elastic_version/auditbeat-$elastic_version-x86_64.rpm
+yum install -y $b_rpm/auditbeat/auditbeat-$elastic_version-x86_64.rpm
 systemctl enable  auditbeat.service
 
-yum install -y $b_rpm/$elastic_version/heartbeat-$elastic_version-x86_64.rpm
+yum install -y $b_rpm/heartbeat/heartbeat-$elastic_version-x86_64.rpm
 
 
 echo "################### Update Beats configuration files ..."

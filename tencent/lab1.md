@@ -1,27 +1,17 @@
-# 腾讯云下 Elastic Beats 部署必备的最佳实践
+# 腾讯云下 Elastic Stack 的 Beats 部署最佳实践
 
-主题：腾讯云下 Elastic Beats 部署必备的最佳实践
+主题：腾讯云下 Elastic Stack 的 Beats 部署最佳实践
 
-概述：使用 Elastic 的各种 Beats 模块可以彻底的终结在服务器上手工捞日志的扭曲实践。利用腾讯云提供的 Elasticsearch 服务，可以轻松搞定大规模云环境的运维。本分享一次性的帮你梳理清楚那些基必备的基础操作，确保你能用 Elastic Stack 安全、稳定和扩展的持续监控你的生产环境。
+## 概述：
 
-关键词： 腾讯云 Elasticsearch 服务、 Elastic Stack、Beats、 Filebeat、Metricbeat
-
-分享提纲：
-
-* ES 后台服务的基础准备
-* 概述 Beats 的分类和特性
-* 索引、流水线和仪表板的基础配置
-* 强烈推荐的最佳实践选项
-* 大规模部署和批量更新
-
-推荐语：
-
-* 原来大规模自动化采集日志和指标还能如此简单！
-* 大部分人 Filebeat 的配置文件都搞错了，但是还不知道！
-
-
+使用 Elastic Stack 的各种 Beats 模块可以彻底的终结在服务器上手工捞日志查指标的扭曲实践。利用腾讯云提供的 Elasticsearch 服务，可以轻松搞定大规模云环境的运维。本文一次性的帮你梳理清楚基必备的基础操作，确保你能用 Elastic Stack 安全、稳定和扩展的持续监控你的生产环境。
 
 ## 准备 ES 集群
+
+登录腾讯云服务控制台，查询并进入 Elasticsearc 服务，点击新建按钮，创建 Elasticsearch 集群。如下图所示。
+
+[](qcloud-es.jpeg)
+
 
 创建冷热分层的集群。
 
