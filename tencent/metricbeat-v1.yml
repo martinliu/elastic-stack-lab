@@ -28,3 +28,5 @@ processors:
 setup.ilm.check_exists: false
 logging.level: error
 queue.spool: ~
+monitoring:
+  enabled: true
