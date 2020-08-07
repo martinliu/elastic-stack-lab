@@ -6,23 +6,40 @@
 
 使用 Elastic Stack 的各种 Beats 模块可以彻底的终结在服务器上手工捞日志查指标的扭曲实践。利用腾讯云提供的 Elasticsearch 服务，可以轻松搞定大规模云环境的运维。本文一次性的帮你梳理清楚基必备的基础操作，确保你能用 Elastic Stack 安全、稳定和扩展的持续监控你的生产环境。
 
-## 准备 ES 集群
+## 创建 ES 集群
 
 登录腾讯云服务控制台，查询并进入 Elasticsearc 服务，点击新建按钮，创建 Elasticsearch 集群。如下图所示。
 
-![](/img/qcloud-es.jpeg)
+![](qcloud-es.jpeg)
 
+集群配置说明：
 
-创建冷热分层的集群。
+* 北京区
+* 7.5.1 - 白金版
+* 单可用区
+* 冷热模式
 
-启用 Kibana 内网地址： http://es-ot7wei87.internal.kibana.tencentelasticsearch.com:5601
+本实例其它参数保持默认，可以根据实际业务需求修改这些参数。
+
+点击下一步后，设置 Elasticsearch 集群的超级用户名和密码，保持这些密码备用。
+
+在几分钟之后这个集群就成功创建了。下面是一些基础的配置和查看。
+
+* 启用 Kibana 内网地址： http://es-ot7wei87.internal.kibana.tencentelasticsearch.com:5601 用于 Bests 的 Setup 命令
+* 启用  Kibana 公网地址： https://es-ot7wei87.kibana.tencentelasticsearch.com:5601 用户Elastic Stack 的初始化配置，如创建角色和调整索引生命周期策略等。 
 
 
 ## 创建 Beats 写入角色和用户
 
-创建 beats-writer 角色
+登录 Kibana ，点击角色和用户管理，创建用于 Beast 配置文件的‘只写’权限用户。
 
-创建 beats-writer 用户，自定义一个安全的复杂密码。
+* 创建 beats-writer 角色
+* 创建 beats-writer 用户，自定义一个安全的复杂密码。
+
+Beats-write 角色设置如下图所示：
+
+![](/img/beats-writer.jpeg)
+
 
 ## 安装和初始化配置 Beats
 
@@ -128,3 +145,5 @@ sh add-agent.sh
 * ECS 扩展字段
 * 启用监控
 * 位置数据
+
+
